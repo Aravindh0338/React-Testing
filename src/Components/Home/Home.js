@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "../Home/Home.css";
 import { DataFetching } from "../../ApiCalls/DataFetching";
 import Show from "../Show/Show.js";
+import { useQuery } from "react-query";
 
 function Home () {
-  const [data, setData] = useState();
+  // const [data, setData] = useState();
 
-  useEffect(()=>{
-    DataFetching().then((res)=>{
-      setData(res)
-    })
-  },[])
-
-  console.log(data)
+ 
+    const {isLoading,isFetching,isError,data,refetch}= useQuery('data',DataFetching)
+    console.log(data)
   
   return (
     <div className="container" data-testid="home">
