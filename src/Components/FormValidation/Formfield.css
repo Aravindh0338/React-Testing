@@ -1,0 +1,45 @@
+body{
+    background-color: #DCE2F0;
+    color:#50586C ;
+}
+
+.formFieldWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin:30px;
+}
+.formWrapper , .radioBtnWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.formWrapper input{
+  width:200px;
+  height:20px;
+  font-size: 1.2rem;
+  padding: 10px;
+  outline: none;
+}
+.option{
+    width: 200px;
+    height:30px;
+    outline: none;
+}
+.btn{
+   width: 100px !important;
+   align-self: center;
+   text-align: center;
+   height: 50px !important;
+   border-radius: 20px;
+   background-color: #50586C;
+   color:#DCE2F0 ;
+   border: 0px;
+}
+.errorText{
+    color: red;
+    font-size: 15px;
+    margin: 0;
+}
