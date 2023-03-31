@@ -4,18 +4,30 @@ import Nav from "./Components/Nav/Nav";
 import Home from "./Components/Home/Home";
 import Formfield from "./Components/FormValidation/Formfield";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 function App() {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            refetchOnWindowFocus: false,
+            retry: false,
+            staleTime: 500000,
+        },
+    },
+});
   return (
-    <>
+
+    <QueryClientProvider client={queryClient}>
       <Router>
         <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Formfield />} />
         </Routes>
+
       </Router>
-    </>
+      </QueryClientProvider>
   );
 }
 
