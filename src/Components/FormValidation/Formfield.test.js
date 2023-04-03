@@ -1,6 +1,13 @@
 import { render, screen,fireEvent} from '@testing-library/react';
 import Formfield from './Formfield';
 
+// jest.mock('formik', () => ({
+//     useFormik: jest.fn().mockReturnValue({
+//       getFieldMeta: jest.fn(),
+//       handleSubmit:jest.fn()
+//     }),
+//     formik:jest.fn()
+//   }));
 
 test('Component is Rendered',()=>{
     render(<Formfield/>);
@@ -50,9 +57,31 @@ test('check radio button',()=>{
     expect(input.value).toBe("30");
 })
 
+test('check radio button Error message',async ()=>{
+    render(<Formfield/>);
+    const input = screen.getByTestId('age1to30');
+    fireEvent.blur(input);
+   expect(await screen.findByText("select Age")).toBeInTheDocument()
+    expect(input.value).toBe("30");
+})
+
 test('check dropdown input box',()=>{
     render(<Formfield/>);
     const input = screen.getByTestId('dropdown');
     fireEvent.change(input, { target: { value: "bike" } });
     expect(input.value).toBe("bike");
+})
+
+test('check dropdown input box Error Message',async ()=>{
+    render(<Formfield/>);
+    const input = screen.getByTestId('dropdown');
+    fireEvent.blur(input);
+    expect(await screen.findByText("select Vehicle")).toBeInTheDocument()
+})
+
+test("Click Submit button",()=>{
+    render(<Formfield/>);
+    const btn =screen.getByText('submit');
+    fireEvent.click(btn);
+
 })
