@@ -11,8 +11,8 @@ function Formfield() {
       .string()
       .min(7, "Enter minimum 7 Digit")
       .required("Enter Password"),
-    age: yup.string().max(2).required("select Age"),
-    vehicle: yup.string().required("select Vehicle"),
+    age: yup.string().max(2).required("Select Age"),
+    vehicle: yup.string().required("Select Gender"),
   });
 
   const formik = useFormik({
@@ -31,9 +31,13 @@ function Formfield() {
 
   return (
     <div className="formFieldWrapper" data-testid="formfield">
-      <h1>Register</h1>
-      <form onSubmit={formik.handleSubmit}>
+
+      
+      <form className="mainFormWrap" onSubmit={formik.handleSubmit}>
+        <h1 className="mainHeading">Register</h1>
         <div className="formWrapper">
+          <div className="inputWrap">
+          <label>Username</label>
           <input
             type="text"
             data-testid="username"
@@ -43,13 +47,18 @@ function Formfield() {
             name="username"
             placeholder="User Name"
           />
-          <br />
-          {formik.touched.username && formik.errors.username ? (
+          {/* <br /> */}
+          <p className={ formik.touched.username && formik.errors.username ? "displayBlock"  : "displayNone"}> {formik.errors.username}</p>
+
+          {/* {formik.touched.username && formik.errors.username ? (
             <p className="errorText">{formik.errors.username}</p>
           ) : (
             ""
-          )}
+          )} */}
+          </div>
 
+          <div className="inputWrap">
+          <label>Email</label>
           <input
             type="email"
             data-testid="email"
@@ -59,13 +68,17 @@ function Formfield() {
             name="email"
             placeholder="User Email"
           />
-          <br />
-          {formik.touched.email && formik.errors.email ? (
+          {/* <br /> */}
+          <p className={ formik.touched.email && formik.errors.email ? "displayBlock"  : "displayNone"}> {formik.errors.email}</p>
+          {/* {formik.touched.email && formik.errors.email ? (
             <p className="errorText">{formik.errors.email}</p>
           ) : (
             ""
-          )}
+          )} */}
+          </div>
 
+          <div className="inputWrap">
+          <label>Password</label>
           <input
             type="password"
             data-testid="password"
@@ -75,15 +88,45 @@ function Formfield() {
             name="password"
             placeholder="Password"
           />
-          {formik.touched.password && formik.errors.password ? (
+          <p className={ formik.touched.password && formik.errors.password ? "displayBlock"  : "displayNone"}> {formik.errors.password}</p>
+
+          {/* <br /> */}
+          {/* {formik.touched.password && formik.errors.password ? (
             <p className="errorText">{formik.errors.password}</p>
           ) : (
             ""
-          )}
+          )} */}
+          </div>
 
-          <div>Select your age</div>
+          <div className="inputWrap">
+            <label>Gender</label>
+          <select
+            className="option"
+            data-testid="dropdown"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.vehicle}
+            name="vehicle"
+          >
+            <option value="car">Male</option>
+            <option value="bike">Female</option>
+            <option value="others">Others</option>
+          </select>
+          {/* <br /> */}
+          <p className={ formik.touched.vehicle && formik.errors.vehicle ? "displayBlock"  : "displayNone"}> {formik.errors.vehicle}</p>
+          {/* {formik.touched.vehicle && formik.errors.vehicle ? (
+            <p className="errorText">{formik.errors.vehicle}</p>
+          ) : (
+            ""
+          )} */}
+          </div>
+
           <div className="radioBtnWrapper">
-            <span>
+            <label>Age</label>
+            <div className="radioWrap">
+              <div className="radioBtnWrap">
+
+            <span className="ageInputWrap">
               <input
                 type="radio"
                 data-testid="age1to30"
@@ -93,9 +136,9 @@ function Formfield() {
                 name="age"
               />
               <label>1-30</label>
-              <br />
+              {/* <br /> */}
             </span>
-            <span>
+            <span className="ageInputWrap">
               <input
                 type="radio"
                 data-testid="age31to60"
@@ -105,9 +148,9 @@ function Formfield() {
                 name="age"
               />
               <label>31-60</label>
-              <br />
+              {/* <br /> */}
             </span>
-            <span>
+            <span className="ageInputWrap">
               <input
                 type="radio"
                 data-testid="age61to90"
@@ -117,34 +160,24 @@ function Formfield() {
                 name="age"
               />
               <label>61-90</label>
-              <br />
+              {/* <br /> */}
             </span>
-            {formik.touched.age && formik.errors.age ? (
+            </div>
+
+          <p className={ formik.touched.age && formik.errors.age ? "displayBlock"  : "displayNone"}> {formik.errors.age}</p>
+
+            {/* {formik.touched.age && formik.errors.age ? (
               <p className="errorText">{formik.errors.age}</p>
             ) : (
               ""
-            )}
+            )} */}
+            </div>
           </div>
-          <select
-            className="option"
-            data-testid="dropdown"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.vehicle}
-            name="vehicle"
-          >
-            <option value="car">car</option>
-            <option value="bike">bike</option>
-            <option value="others">others</option>
-          </select>
-          <br />
-          {formik.touched.vehicle && formik.errors.vehicle ? (
-            <p className="errorText">{formik.errors.vehicle}</p>
-          ) : (
-            ""
-          )}
-
-          <input className="btn" type="submit" />
+          
+         
+          {/* <input className="btn" type="submit" /> */}
+          {/* <Button type="submit">Register</Button> */}
+          <button className="btn" type="submit">Register</button>
         </div>
       </form>
     </div>

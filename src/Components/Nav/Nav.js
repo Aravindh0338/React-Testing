@@ -6,14 +6,14 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 function Nav() {
   return (
     <div className="nav">
-      <div className="iconWrapper">
+      {/* <div className="iconWrapper">
         <LocalMallIcon fontSize="large" />
         <h3>ECommerce</h3>
       </div>
       <div className="cartCountWrapper">
         <ShoppingCartIcon />
         <span className="cartCount">1</span>
-      </div>
+      </div> */}
     </div>
   );
 }
