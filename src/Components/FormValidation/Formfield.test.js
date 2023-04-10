@@ -1,15 +1,7 @@
 import { render, screen, fireEvent, waitFor} from "@testing-library/react";
-// import { Simulate } from "react-dom/test-utils";
 import * as router from 'react-router'
-// import { navigate } from 'react-router';
-import { BrowserRouter, Routes, Route} from "react-router-dom";
 import Formfield from "./Formfield";
-import ShowFormData from "../showFormData/ShowFormData";
 
-
-// jest.mock("react-router", () => ({
-//   useNavigate: jest.fn(),
-// }));
 
 const navigate = jest.fn()
 
@@ -19,14 +11,6 @@ beforeEach(() => {
 
 const state={state:{"values": {"age": "30", "email": "aravindh@gmail.com", "gender": "male", "password": "6vwheuhe", "username": "Aravindh"}}}
 
-const component=()=>{
-  return(
-    <BrowserRouter>
-    <Formfield/>
-    <ShowFormData/>
-    </BrowserRouter>
-  )
-}
 
 
 test("Component is Rendered", () => {
@@ -59,7 +43,8 @@ test("Check Email input component", async () => {
 });
 
 test("Check password input component", async () => {
-  render(<Formfield />);
+//  await act(()=>{ render(<Formfield />)});
+  render(<Formfield/>)
   const input = screen.getByTestId("password");
   fireEvent.blur(input);
   expect(await screen.findByText("Enter Password")).toBeInTheDocument();
