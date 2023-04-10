@@ -11,7 +11,7 @@ function Dummy() {
 
   return (
     <div data-testid="dummy">
-      <h1>Mock Function</h1>
+      <h1>Hello</h1>
       {msg ? <div>{msg}</div> : ""}
       <button onClick={() => fun(true)}>Login</button>
       <button onClick={() => fun(false)}>Logout</button>

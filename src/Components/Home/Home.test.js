@@ -1,10 +1,11 @@
-import { render, screen, cleanup } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Home from "./Home";
 import { DataFetching } from "../../ApiCalls/DataFetching";
 import { QueryClient, QueryClientProvider } from "react-query";
-// import { cleanup } from '@testing-library/react/types';
 
-jest.mock("../../ApiCalls/DataFetching");
+jest.mock("../../ApiCalls/DataFetching", () => ({
+  DataFetching: jest.fn(),
+}));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -47,7 +48,7 @@ const mockHome = () => {
 // })
 
 test("Component is Rendered", () => {
-  DataFetching.mockResolvedValue(() => data);
+  DataFetching.mockImplementation(() => data);
   render(mockHome());
   const home = screen.getByTestId("home");
   expect(home).toBeTruthy();
