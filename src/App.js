@@ -9,6 +9,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import Statemock from "./Components/MockingHooks/Statemock";
 import ShowFormData from "./Components/showFormData/ShowFormData";
 import FormFieldDemo from "./Components/FormFieldDemo/FormFieldDemo"
+import Counter from "./Components/Counter/Counter";
 
 function App() {
   const queryClient = new QueryClient({
@@ -30,6 +31,7 @@ function App() {
           <Route path="/register-demo" element={<FormFieldDemo />} />
           <Route path="/dummy" element={<Dummy />} />
           <Route path="/mock-state" element={<Statemock />} />
+          <Route path="/count" element={<Counter />} />
           <Route path="/register-data" element={<ShowFormData />} />
         </Routes>
       </Router>
