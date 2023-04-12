@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor} from "@testing-library/react";
+import { render, screen, fireEvent, waitFor, act} from "@testing-library/react";
 import * as router from 'react-router'
 import Formfield from "./Formfield";
 
@@ -28,6 +28,17 @@ test("Check User Name input component", async () => {
   fireEvent.blur(input);
   expect(input).toBeTruthy();
   expect(input.value).toBe("Aravindh");
+});
+
+test("Check email validation", async () => {
+  render(<Formfield />);
+  const input = screen.getByTestId("email");
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+  await act(() => {
+    fireEvent.change(input, { target: { value: "1" } });
+  });
+  const errorMsg = screen.getByText("Enter Valid Email");
+  expect(errorMsg).toBeInTheDocument();
 });
 
 test("Check Email input component", async () => {
